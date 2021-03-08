@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ data.question }}</title>
+</head>
+
+<body>
+<h1>Sound of AI Survey Questions</h1>
+<h3>{{ data.question }}</h3>
+<form action="/responsedata">
+    {% for e in data.fields %}
+        <input type="radio" name="field" value="{{ e }}"> {{ e }}<br>
+    {% endfor %}
+    <input type="submit" value="Submit" />
+</form>
+<h3>"Add more questions here"</h3>
+</body>
+
+
+</html>

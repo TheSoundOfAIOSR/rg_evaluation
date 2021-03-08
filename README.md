@@ -1,6 +1,16 @@
 # rg_evaluation
 Research Group - Evaluation
 
+## Flask App for the survey:
+
+> `main.py` handles the Python survey app (written in Flask) 
+
+## To do:
+
+1.  Connect `main.py` app storing it database using PyMySQL.
+2.  Make the app "prettier." Feel free to work some .css magic.
+3.  Update survey questions under `surveydata.py`.
+
 ## PyMySQL rundown
 
 The two main objects you want to work with in PyMySQL are 1) the database connection object (which is `db` in the script) and 2) the `cursor` object. A typical workflow looks like this:
