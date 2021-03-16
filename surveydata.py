@@ -15,3 +15,14 @@ class SurveyData:
         'question': "How likely are you to keep using the product?",
         'fields': ['I will be using it regularly', 'I will use it from time to time', 'I will probably never use this']
     }
+
+    question5 = {
+        'question': "Are there any other thoughts about the product that you would like to share?"
+    }
+
+    question6 = {
+        'question': "Which audio sample sounds more real?",
+        'fields': ['sample_1', "sample_2"],
+        'sample_1': "/static/audio/classical.00003.wav",
+        'sample_2': "/static/audio/classical.00008.wav"
+    }
