@@ -1,73 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/survey.css') }}">
 <title>{{ data.question }}</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-<div class="container pt-3 bg-dark text-white">
-    <h1>Sound of AI Survey Questions</h1>
+<body style="font-family: 'El Messiri', sans-serif;">
+	<div class="container pt-3 my-3 text-white">
+		<h1 class="text-center my-4">Sound of AI Survey Questions</h1>
+		<hr class="style-seven">
+		
+		<div class="p-5 mb-5 question">
+			<h3 class="my-3 ml-1">{{ data.question1.question }}</h3>
+			<form action="/responsedata">
+				{% for e in data.question1.fields %}
+					<div class="option">
+						<input type="radio" name="field" value="{{e}}" id="1-{{e}}">
+						<label for="1-{{e}}">
+							<span></span>
+							{{e}}
+						</label>
+					</div>
+				{% endfor %}
+			</form>
+		</div>
 
-    <h3>{{ data.question1.question }}</h3>
-        <form action="/responsedata">
-            {% for e in data.question1.fields %}
-                <input type="radio" name="field" value="{{ e }}"> {{ e }}<br>
-            {% endfor %}
-        </form>
+		<div class="p-5 mb-5 question">
+			<h3 class="my-3 ml-1">{{ data.question2.question }}</h3>
+			<form action="/responsedata">
+				{% for e in data.question2.fields %}
+				<div class="option">
+					<input type="radio" name="field" value="{{e}}" id="2-{{e}}">
+					<label for="2-{{e}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</form>
+		</div>
 
-    <h3>{{ data.question2.question }}</h3>
-        <form action="/responsedata">
-            {% for e in data.question2.fields %}
-                <input type="radio" name="field" value="{{ e }}"> {{ e }}<br>
-            {% endfor %}
-        </form>
+		<div class="p-5 mb-5 question">
+			<h3 class="my-3 ml-1">{{ data.question3.question }}</h3>
+			<form action="/responsedata">
+				{% for e in data.question3.fields %}
+				<div class="option">
+					<input type="radio" name="field" value="{{e}}" id="3-{{e}}">
+					<label for="3-{{e}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</form>
+		</div>
 
-    <h3>{{ data.question3.question }}</h3>
-        <form action="/responsedata">
-            {% for e in data.question3.fields %}
-                <input type="radio" name="field" value="{{ e }}"> {{ e }}<br>
-            {% endfor %}
-        </form>
+		<div class="p-5 mb-5 question">
+			<h3 class="my-3 ml-1">{{ data.question4.question }}</h3>
+			<form action="/responsedata">
+				{% for e in data.question4.fields %}
+				<div class="option">
+					<input type="radio" name="field" value="{{e}}" id="4-{{e}}">
+					<label for="4-{{e}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</form>
+		</div>
+
+		<div class="p-5 mb-5 question">
+			<h3 class="my-3 ml-1">{{ data.question5.question}}</h3>
+			<form action="/responsedata">
+				<textarea name="field" rows="5" cols="80"></textarea>
+			</form>
+		</div>
 
 
-    <h3>{{ data.question4.question }}</h3>
-        <form action="/responsedata">
-            {% for e in data.question4.fields %}
-                <input type="radio" name="field" value="{{ e }}"> {{ e }}<br>
-            {% endfor %}
-        </form>
+		<h1 class="text-center"> Turing Test!</h1>
 
+		<p class="text-center">
+			For these questions, listen to both audio samples and decide which one sounds
+			like a human made it.
+		</p>
 
+		<div class="p-5 mb-5 question">
+			<h3 class="my-3 ml-1">{{data.question6.question}}</h3>
+			<form action="/responsedata">
+				{% for e in data.question6.fields %}
+					
+					<div class="option">
+						<input type="radio" name="field" value="{{e}}" id="6-{{e}}">
+						<label for="6-{{e}}">
+							<span></span>
+							<audio controls controlsList="nodownload" src={{data.question6[e]}} preload="auto"></audio>
+						</label>
+					</div>
+				{% endfor %}
+				<input type="submit" value="Submit" class="d-block mx-auto rounded-lg" />
+			</form>
+		</div>
 
-    <h3>{{ data.question5.question}}</h3>
-        <form action="/responsedata">
-            <textarea name="field" rows="5" cols="80" value=>
-            </textarea>
-
-        </form>
-
-
-
-    <h1> Turing Test!</h1>
-
-        <p>
-            For these questions, listen to both audio samples and decide which one sounds
-            like a human made it.
-        </p>
-
-    <h3>{{data.question6.question}}</h3>
-        <form action="/responsedata">
-            {% for e in data.question6.fields %}
-                <input type="radio" name="field" value="{{ e }}">
-                <audio controls src={{data.question6[e]}} preload="auto"></audio>
-                <br>
-            {% endfor %}
-
-        <input type="submit" value="Submit" />
-        </form>
-
-    </div>
+	</div>
 </body>
 
 
