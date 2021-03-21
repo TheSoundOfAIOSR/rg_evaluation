@@ -5,6 +5,10 @@ Research Group - Evaluation
 
 > `main.py` handles the Python survey app (written in Flask) 
 
+## Streamlit App
+
+> `streamlit run dashboard.py` runs the streamlit app
+
 ## To do:
 
 1.  Connect `main.py` app storing it database using PyMySQL.
