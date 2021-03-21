@@ -4,6 +4,8 @@
 
 
 # Access AWS with Python 3
+# config file and gitignore
+# Save as environment variable locally
 
 # db: sofai-mysql
 # username: admin
