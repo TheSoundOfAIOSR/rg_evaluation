@@ -1,0 +1,9 @@
+{
+    "sofai_evalDB":{
+        "hostname":"sofai-mysql.cbyywm0dtzft.us-east-2.rds.amazonaws.com",
+        "port": 3306,
+        "username":"admin",
+        "password":"soundofai",
+        "db":"sofai-mysql"
+    }
+}
