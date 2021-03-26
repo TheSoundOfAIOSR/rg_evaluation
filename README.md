@@ -23,11 +23,11 @@ cd to your repo on your machine and follow these steps.
 
 1. Create the Docker image by running this command. It will create an image with the name "osr_evaluation" using the files in the current directory.
 
-    docker build -t osr_evaluation .
+        docker build -t osr_evaluation .
 
 2. Run the container from that image:
 
-    docker run -d -p 5000:5000 osr_evaluation 
+        docker run -d -p 5000:5000 osr_evaluation 
 
 3. Tada! open your browser and go to localhost:5000 and you'll see the web app running in the docker container.
 
