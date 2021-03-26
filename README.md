@@ -15,6 +15,24 @@ Research Group - Evaluation
 2.  Make the app "prettier." Feel free to work some .css magic.
 3.  Update survey questions under `surveydata.py`.
 
+## Docker Rundown
+
+If you want to try out the Docker container, first install Docker on your computer. 
+Then, after you launch the Docker Daemon (basically when you see the little whale on your taskbar),
+cd to your repo on your machine and follow these steps.
+
+1. Create the Docker image by running this command. It will create an image with the name "osr_evaluation" using the files in the current directory.
+
+    docker build -t osr_evaluation .
+
+2. Run the container from that image:
+
+    docker run -d -p 5000:5000 osr_evaluation 
+
+3. Tada! open your browser and go to localhost:5000 and you'll see the web app running in the docker container.
+
+Note: you can see the running container and its corresponding base image in the Docker Dashboard.
+    
 ## PyMySQL rundown
 
 The two main objects you want to work with in PyMySQL are 1) the database connection object (which is `db` in the script) and 2) the `cursor` object. A typical workflow looks like this:
