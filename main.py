@@ -5,7 +5,7 @@ DB operations added
 
 from flask import Flask, render_template, request
 from surveydata import SurveyData
-from sofaidb import DBInterface
+from Newsofaidb import DBInterface
 from datetime import datetime
 import os
 
