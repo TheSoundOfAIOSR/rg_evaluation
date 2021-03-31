@@ -23,14 +23,14 @@ def root():
     return render_template("survey.html", data=survey_data)
 
 
-@app.route('/responsedata')
+@app.route('/responsedata', methods=['POST'])
 def surveyresponse():
     """
     Handle Survey Response
     :return:
     """
     RspType = -1
-    rating = request.args.get('field')
+    rating = request.form['q1']
 
     if rating:  # equivalent of is None
         out = open(filename, 'a')
@@ -40,7 +40,7 @@ def surveyresponse():
         RspType = 1  # set it for radio button if at least one radio button is present in the questionnaire
         # Write ResponseInt <-- rating
 
-    response = request.args.get('first_name')
+    response = request.form['q5']
     if response:
         if RspType == -1:
             # set it for text input. As of now, this field and Responder filed are one and the same.
@@ -55,7 +55,7 @@ def surveyresponse():
     DBInterface.writeToDB(RespUser='dummyUser', RespType=1, RespInt=int(
         rating), RespText=response, RespDate=CurrDate)
 
-    return render_template('thankyou.html', data=survey_data.data, msg='data written to DB')
+    return render_template('thankyou.html', data=survey_data, ans=request.form)
 
 
 @app.route('/results')
