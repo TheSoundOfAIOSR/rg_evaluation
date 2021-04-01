@@ -39,11 +39,51 @@ class SurveyData:
         'name': 'q7'
     }
     question8 = {
-        'question': "What additional feature would you like to see?",
+        'question': "What additional features would you like to see?",
         'name': 'q8'
     }
     question9 = {
         'question': "On average, how often would you use this product to generate music?",
         'fields': ['1', '2', '3', '4', '5'],
         'name': 'q9'
+    }
+
+    question10 = {
+        'question': "How useful was this tool in generating new musical ideas?",
+        'fields': ['1', '2', '3', '4', '5'],
+        'name': 'q10'
+    }
+
+    question11 = {
+        'question': "How easy was it to learn how to use this tool?",
+        'fields': ['1', '2', '3', '4', '5'],
+        'name': 'q11'
+    }
+
+    question12 = {
+        'question': "Which examples are most pleasant to listen?",
+        'fields': ['sample_1', "sample_2"],
+        'sample_1': "/static/audio/classical.00003.wav",
+        'sample_2': "/static/audio/classical.00008.wav",
+        'name': 'q12'
+    }
+
+    question13 = {
+        'question': "Rank the following music samples in order of authencitiy?",
+        'fields': ['sample_1', "sample_2"],
+        'sample_1': "/static/audio/classical.00003.wav",
+        'sample_2': "/static/audio/classical.00008.wav",
+        'name': 'q6'
+    }
+
+    question14 = {
+        'question': "What stops you from using this product again?",
+        'fields': ['1', '2', '3', '4', '5'],
+        'name': 'q14'
+    }
+
+    question15 = {
+        'question': "How would you rate the user experience?",
+        'fields': ['1', '2', '3', '4', '5'],
+        'name': 'q15'
     }

@@ -1,8 +1,24 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import json
+from surveydata import SurveyData
+import pymysql
 
-# Following streamlit tutorial
+survey_data = SurveyData()
+
+with open("dbConfig.json") as json_data_file:
+    DBParameters = json.load(json_data_file)
+    dict1 = DBParameters['sofai_evalDB']
+    hostName = dict1['hostname']
+    userName = dict1['username']
+    PWD = dict1['password']
+
+#db = pymysql.connect(host=hostName, user=userName, password=PWD)
+#cursor = db.cursor()
+#cursor.execute('''show tables''')
+#data = cursor.fetchall()
+#print(data)
 
 st.title("Sound of AI Survey Feedback Visualization")
 
@@ -18,15 +34,34 @@ def load_data(nrows):
     data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
     return data
 
-
-# Create a text element and let the reader know the data is loading.
-#data_load_state = st.text('Loading data...')
-# Load 10,000 rows of data into the dataframe.
 data = load_data(10000)
-# Notify the reader that the data was successfully loaded.
-#data_load_state.text('Loading data...done!')
-#data_load_state.text("Done! (using st.cache)")
 
-st.subheader('Some histogram')
-hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
-st.bar_chart(hist_values)
+row3_space1, row3_1, row3_space2, row3_2, row3_space3 = st.beta_columns(
+    (.1, 1, .1, 1, .1))
+
+with row3_1:
+    st.subheader(survey_data.question1['question'])
+    hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+    st.bar_chart(hist_values)
+
+with row3_2:
+    st.subheader(survey_data.question2['question'])
+    hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+    st.bar_chart(hist_values)
+
+row3_space1, row4_1, row4_space2, row4_2, row3_space3 = st.beta_columns(
+    (.1, 1, .1, 1, .1))
+
+with row4_1:
+    st.subheader(survey_data.question3['question'])
+    hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+    st.bar_chart(hist_values)
+
+with row4_2:
+    st.subheader(survey_data.question4['question'])
+    hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+    st.bar_chart(hist_values)
+
+
+st.markdown("[Insert Survey String Responses]")
+
