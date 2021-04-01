@@ -52,6 +52,8 @@ def surveyresponse():
     CurrDate = datetime.now()
     # Write ResponseDate <-- CurrDate
     CurrDate = CurrDate.strftime("%Y-%m-%d")
+
+
     DBInterface.writeToDB(RespUser='dummyUser', RespType=1, RespInt=int(
         rating), RespText=response, RespDate=CurrDate)
 
