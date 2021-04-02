@@ -9,7 +9,7 @@
 import json
 import pymysql
 
-with open("./app/dbConfig.json") as json_data_file:
+with open("dbConfig.json") as json_data_file:
     DBParameters = json.load(json_data_file)
 dict1 = DBParameters['sofai_evalDB']
 hostName = dict1['hostname']

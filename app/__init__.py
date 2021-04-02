@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template, request
-from app.surveydata import SurveyData
+from app.survey.surveydata import SurveyData
 from app.survey.sofaidb import DBInterface
 from datetime import datetime
 
