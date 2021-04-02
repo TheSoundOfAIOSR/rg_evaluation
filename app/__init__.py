@@ -1,13 +1,8 @@
-"""
-Modified by Balaji - 9/3/2021
-DB operations added
-"""
 
 from flask import Flask, render_template, request
-from surveydata import SurveyData
-from Newsofaidb import DBInterface
+from app.surveydata import SurveyData
+from app.survey.sofaidb import DBInterface
 from datetime import datetime
-import os
 
 app = Flask(__name__)
 survey_data = SurveyData()
@@ -53,7 +48,6 @@ def surveyresponse():
     # Write ResponseDate <-- CurrDate
     CurrDate = CurrDate.strftime("%Y-%m-%d")
 
-
     DBInterface.writeToDB(RespUser='dummyUser', RespType=1, RespInt=int(
         rating), RespText=response, RespDate=CurrDate)
 
@@ -76,7 +70,3 @@ def show_results():
         responses[response] += 1
 
     return render_template('results.html', data=survey_data.data, votes=responses)
-
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")

@@ -128,7 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# vscode
+# vscode and other files that don't need to be there
 .vscode
-
+.idea
 dbConfig.json
