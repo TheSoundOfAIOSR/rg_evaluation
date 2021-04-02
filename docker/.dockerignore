@@ -2,8 +2,7 @@ __pycache__/
 .idea
 .vscode
 .gitignore
-.dockerignore
-LICENSE
-README.md
-travis.yml 
-dashboard.py
+.github
+.pytest_cache
+docker
+run_dashboard.py
