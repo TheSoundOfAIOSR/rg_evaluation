@@ -27,7 +27,7 @@ def surveyresponse():
     RspType = -1
     rating = request.form['q1']
 
-    if rating:  # equivalent of is None
+    if rating:  # equivalent of is not None
         out = open(filename, 'a')
         out.write(rating + '\n')
         out.close()
