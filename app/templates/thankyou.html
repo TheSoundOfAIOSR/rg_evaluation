@@ -68,10 +68,92 @@
 			</div>
 
 			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question7.question }}</h3>
+				{% for e in data.question7.fields %}
+				<div class="option">
+					<input type="radio" name="{{ data.question7.name }}" value="{{e}}" id="{{ data.question7.name }}-{{loop.index}}" disabled {% if e == ans['q7'] %} checked {% endif %}>
+					<label for="{{ data.question7.name }}-{{loop.index}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question9.question }}</h3>
+				{% for e in data.question9.fields %}
+				<div class="option">
+					<input type="radio" name="{{ data.question9.name }}" value="{{e}}" id="{{ data.question9.name }}-{{loop.index}}" disabled {% if e == ans['q9'] %} checked {% endif %}>
+					<label for="{{ data.question9.name }}-{{loop.index}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question10.question }}</h3>
+				{% for e in data.question10.fields %}
+				<div class="option">
+					<input type="radio" name="{{ data.question10.name }}" value="{{e}}" id="{{ data.question10.name }}-{{loop.index}}" disabled {% if e == ans['q10'] %} checked {% endif %}>
+					<label for="{{ data.question10.name }}-{{loop.index}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question11.question }}</h3>
+				{% for e in data.question11.fields %}
+				<div class="option">
+					<input type="radio" name="{{ data.question11.name }}" value="{{e}}" id="{{ data.question11.name }}-{{loop.index}}" disabled {% if e == ans['q11'] %} checked {% endif %}>
+					<label for="{{ data.question11.name }}-{{loop.index}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question14.question }}</h3>
+				{% for e in data.question14.fields %}
+				<div class="option">
+					<input type="radio" name="{{ data.question14.name }}" value="{{e}}" id="{{ data.question14.name }}-{{loop.index}}" disabled {% if e == ans['q14'] %} checked {% endif %}>
+					<label for="{{ data.question14.name }}-{{loop.index}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question15.question }}</h3>
+				{% for e in data.question15.fields %}
+				<div class="option">
+					<input type="radio" name="{{ data.question15.name }}" value="{{e}}" id="{{ data.question15.name }}-{{loop.index}}" disabled {% if e == ans['q15'] %} checked {% endif %}>
+					<label for="{{ data.question15.name }}-{{loop.index}}">
+						<span></span>
+						{{e}}
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{ data.question8.question}}</h3>
+				<textarea name="{{ data.question8.name }}" rows="5" cols="80" disabled>{{ ans['q8'] }}</textarea>
+			</div>
+
+			<div class="p-5 mb-5 question">
 				<h3 class="my-3 ml-1">{{ data.question5.question}}</h3>
 				<textarea name="{{ data.question5.name }}" rows="5" cols="80" disabled>{{ ans['q5'] }}</textarea>
 			</div>
-
 
 			<h1 class="text-center"> Turing Test!</h1>
 
@@ -89,6 +171,32 @@
 						<label for="{{ data.question6.name }}-{{loop.index}}">
 							<span></span>
 							<audio controls controlsList="nodownload" src={{data.question6[e]}} preload="auto"></audio>
+						</label>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{data.question12.question}}</h3>
+				{% for e in data.question12.fields %}
+					
+					<div class="option">
+						<input type="radio" name="{{ data.question12.name }}" value="{{e}}" id="{{ data.question12.name }}-{{loop.index}}"  disabled {% if e == ans['q12'] %} checked {% endif %}>
+						<label for="{{ data.question12.name }}-{{loop.index}}">
+							<span></span>
+							<audio controls controlsList="nodownload" src={{data.question12[e]}} preload="auto"></audio>
+						</label>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="p-5 mb-5 question">
+				<h3 class="my-3 ml-1">{{data.question13.question}}</h3>
+				{% for e in data.question13.fields %}
+					
+					<div class="option">
+						<input type="radio" name="{{ data.question13.name }}" value="{{e}}" id="{{ data.question13.name }}-{{loop.index}}"  disabled {% if e == ans['q13'] %} checked {% endif %}>
+						<label for="{{ data.question13.name }}-{{loop.index}}">
+							<span></span>
+							<audio controls controlsList="nodownload" src={{data.question13[e]}} preload="auto"></audio>
 						</label>
 					</div>
 				{% endfor %}

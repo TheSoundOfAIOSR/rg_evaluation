@@ -74,7 +74,7 @@ class SurveyData:
         'fields': ['sample_1', "sample_2"],
         'sample_1': "/static/audio/classical.00003.wav",
         'sample_2': "/static/audio/classical.00008.wav",
-        'name': 'q6'
+        'name': 'q13'
     }
 
     question14 = {
