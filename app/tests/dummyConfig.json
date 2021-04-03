@@ -1,0 +1,9 @@
+{
+    "sofai_evalDB": {
+        "dummyhost": "dummyConfHost",
+        "port": 42,
+        "dummyuser": "dummyConfUser",
+        "dummypass": "dummyConfPass",
+        "db": "dummyDB"
+    }
+}

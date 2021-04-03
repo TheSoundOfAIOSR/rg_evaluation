@@ -14,6 +14,7 @@ textarea {
 		rgba(255, 255, 255, 0.2) 0%,
 		rgba(255, 255, 255, 0.2 ) 2%
 	);
+	width: 100%;
 }
 
 textarea::placeholder {

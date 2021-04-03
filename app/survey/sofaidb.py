@@ -6,56 +6,20 @@
 # Access AWS with Python 3
 # DB Parameters moved to dbConfig.json :: Balaji 24/3/2021
 
+from app.config import load_config
 import json
 import pymysql
-
-with open("dbConfig.json") as json_data_file:
-    DBParameters = json.load(json_data_file)
-dict1 = DBParameters['sofai_evalDB']
-hostName = dict1['hostname']
-userName = dict1['username']
-PWD = dict1['password']
-#print('Host = ', hostName, 'Username = ', userName, 'Pass Word = ', PWD)
 
 
 class DBInterface:
 
-    DATABASE_NAME = "SofAISurvey"
+    config = load_config()
 
-    # global parameter to keep track of the database being created.
-    isCreated = True
-
-    @classmethod
-    def createTable(cls, table_name):
-        """
-        Create a table in the database.
-        """
-        db = pymysql.connect(host=hostName, user=userName, password=PWD)
-        cursor = db.cursor()
-        cursor.execute(f'''CREATE TABLE {table_name} 
-                            (questionNo int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        					Responder varchar(40) NOT NULL,
-        					ResponseType int,	#1 - for radio btn, 2 - for text, ...
-        					ResponseInt int,
-        					ResponseText varchar(40),
-        					ResponseDate	DATE )''')
-
-    @classmethod
-    def createDB(cls):
-        """This method creates the database; only run once."""
-        if not cls.isCreated:
-            db = pymysql.connect(host=hostName, user=userName, password=PWD)
-            cursor = db.cursor()
-            sql = '''create database {}'''.format(cls.DATABASE_NAME)
-
-            cursor.execute(sql)
-            cls.isCreated = True
-
-    @classmethod
-    def writeToDB(cls, RespUser, RespType, RespInt, RespText, RespDate):
-        # db = pymysql.connect(host='sofai-mysql.cbyywm0dtzft.us-east-2.rds.amazonaws.com',
-        #                 user='admin', password='soundofai')
-        db = pymysql.connect(host=hostName, user=userName, password=PWD)
+    def writeToDB(RespUser, RespType, RespInt, RespText, RespDate):
+        db = pymysql.connect(
+            host=DBInterface.config['hostname'],
+            user=DBInterface.config['username'],
+            password=DBInterface.config['password'])
         cursor = db.cursor()
 
         # get the sql version of the database
