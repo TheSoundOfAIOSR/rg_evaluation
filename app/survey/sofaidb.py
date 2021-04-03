@@ -6,24 +6,20 @@
 # Access AWS with Python 3
 # DB Parameters moved to dbConfig.json :: Balaji 24/3/2021
 
+from app.config import load_config
 import json
 import pymysql
-
-with open("dbConfig.json") as json_data_file:
-    DBParameters = json.load(json_data_file)
-dict1 = DBParameters['sofai_evalDB']
-hostName = dict1['hostname']
-userName = dict1['username']
-PWD = dict1['password']
-#print('Host = ', hostName, 'Username = ', userName, 'Pass Word = ', PWD)
 
 
 class DBInterface:
 
+    config = load_config()
+
     def writeToDB(RespUser, RespType, RespInt, RespText, RespDate):
-        # db = pymysql.connect(host='sofai-mysql.cbyywm0dtzft.us-east-2.rds.amazonaws.com',
-        #                 user='admin', password='soundofai')
-        db = pymysql.connect(host=hostName, user=userName, password=PWD)
+        db = pymysql.connect(
+            host=DBInterface.config['hostname'],
+            user=DBInterface.config['username'],
+            password=DBInterface.config['password'])
         cursor = db.cursor()
 
         # this is just a python object; just prints the location of the object in your memory
