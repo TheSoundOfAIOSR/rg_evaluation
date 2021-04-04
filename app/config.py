@@ -6,12 +6,7 @@ This script will first check to see if these variables are already defined
 import os
 import json
 from collections import defaultdict
-
-# variable names needed for the database connection
-VAR_NAMES = ["hostname", "username", "password"]
-
-# name of the config file to use in case environment vars are not set
-CONFIG_FILE = "dbConfig.json"
+from app.constants import VAR_NAMES, CONFIG_FILE
 
 
 def is_defined_in_environ(var_names):
