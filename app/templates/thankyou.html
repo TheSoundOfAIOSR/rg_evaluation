@@ -20,7 +20,7 @@
 				{% for e in data.question1.fields %}
 					<div class="option">
 						<input type="radio" name="{{ data.question1.name }}" value="{{e}}" id="{{ data.question1.name }}-{{loop.index}}" disabled {% if e == ans['q1'] %} checked {% endif %}>
-						<label for="{{ data.question1.name }}-{{loop.index}}">
+						<label for="{{ data.question1.name }}-{{loop.index}}" class="no-hover">
 							<span></span>
 							{{e}}
 						</label>
@@ -33,7 +33,7 @@
 				{% for e in data.question2.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question2.name }}" value="{{e}}" id="{{ data.question2.name }}-{{loop.index}}"" disabled {% if e == ans['q2'] %} checked {% endif %}>
-					<label for="{{ data.question2.name }}-{{loop.index}}">
+					<label for="{{ data.question2.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -46,7 +46,7 @@
 				{% for e in data.question3.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question3.name }}" value="{{e}}" id="{{ data.question3.name }}-{{loop.index}}"  disabled {% if e == ans['q3'] %} checked {% endif %}>
-					<label for="{{ data.question3.name }}-{{loop.index}}">
+					<label for="{{ data.question3.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -59,7 +59,7 @@
 				{% for e in data.question4.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question4.name }}" value="{{e}}" id="{{ data.question4.name }}-{{loop.index}}" disabled {% if e == ans['q4'] %} checked {% endif %}>
-					<label for="{{ data.question4.name }}-{{loop.index}}">
+					<label for="{{ data.question4.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -72,7 +72,7 @@
 				{% for e in data.question7.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question7.name }}" value="{{e}}" id="{{ data.question7.name }}-{{loop.index}}" disabled {% if e == ans['q7'] %} checked {% endif %}>
-					<label for="{{ data.question7.name }}-{{loop.index}}">
+					<label for="{{ data.question7.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -85,7 +85,7 @@
 				{% for e in data.question9.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question9.name }}" value="{{e}}" id="{{ data.question9.name }}-{{loop.index}}" disabled {% if e == ans['q9'] %} checked {% endif %}>
-					<label for="{{ data.question9.name }}-{{loop.index}}">
+					<label for="{{ data.question9.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -98,7 +98,7 @@
 				{% for e in data.question10.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question10.name }}" value="{{e}}" id="{{ data.question10.name }}-{{loop.index}}" disabled {% if e == ans['q10'] %} checked {% endif %}>
-					<label for="{{ data.question10.name }}-{{loop.index}}">
+					<label for="{{ data.question10.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -111,7 +111,7 @@
 				{% for e in data.question11.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question11.name }}" value="{{e}}" id="{{ data.question11.name }}-{{loop.index}}" disabled {% if e == ans['q11'] %} checked {% endif %}>
-					<label for="{{ data.question11.name }}-{{loop.index}}">
+					<label for="{{ data.question11.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -124,7 +124,7 @@
 				{% for e in data.question14.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question14.name }}" value="{{e}}" id="{{ data.question14.name }}-{{loop.index}}" disabled {% if e == ans['q14'] %} checked {% endif %}>
-					<label for="{{ data.question14.name }}-{{loop.index}}">
+					<label for="{{ data.question14.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -137,7 +137,7 @@
 				{% for e in data.question15.fields %}
 				<div class="option">
 					<input type="radio" name="{{ data.question15.name }}" value="{{e}}" id="{{ data.question15.name }}-{{loop.index}}" disabled {% if e == ans['q15'] %} checked {% endif %}>
-					<label for="{{ data.question15.name }}-{{loop.index}}">
+					<label for="{{ data.question15.name }}-{{loop.index}}" class="no-hover">
 						<span></span>
 						{{e}}
 					</label>
@@ -168,7 +168,7 @@
 					
 					<div class="option">
 						<input type="radio" name="{{ data.question6.name }}" value="{{e}}" id="{{ data.question6.name }}-{{loop.index}}"  disabled {% if e == ans['q6'] %} checked {% endif %}>
-						<label for="{{ data.question6.name }}-{{loop.index}}">
+						<label for="{{ data.question6.name }}-{{loop.index}}" class="no-hover">
 							<span></span>
 							<audio controls controlsList="nodownload" src={{data.question6[e]}} preload="auto"></audio>
 						</label>
@@ -181,7 +181,7 @@
 					
 					<div class="option">
 						<input type="radio" name="{{ data.question12.name }}" value="{{e}}" id="{{ data.question12.name }}-{{loop.index}}"  disabled {% if e == ans['q12'] %} checked {% endif %}>
-						<label for="{{ data.question12.name }}-{{loop.index}}">
+						<label for="{{ data.question12.name }}-{{loop.index}}" class="no-hover">
 							<span></span>
 							<audio controls controlsList="nodownload" src={{data.question12[e]}} preload="auto"></audio>
 						</label>
@@ -194,7 +194,7 @@
 					
 					<div class="option">
 						<input type="radio" name="{{ data.question13.name }}" value="{{e}}" id="{{ data.question13.name }}-{{loop.index}}"  disabled {% if e == ans['q13'] %} checked {% endif %}>
-						<label for="{{ data.question13.name }}-{{loop.index}}">
+						<label for="{{ data.question13.name }}-{{loop.index}}" class="no-hover">
 							<span></span>
 							<audio controls controlsList="nodownload" src={{data.question13[e]}} preload="auto"></audio>
 						</label>
