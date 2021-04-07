@@ -1,19 +1,17 @@
-from pprint import pprint
 from datetime import datetime
 
 from flask import Flask, render_template, request
 
 from app.survey.surveydata import SurveyData
 from app.survey.sofaidb import DBInterface
-from app.constants import NUM_QUESTIONS
 
 app = Flask(__name__)
-survey_data = SurveyData()
-csv_file = 'data.csv'
-text_file = 'data.txt'
+survey_data = SurveyData().get_all_questions()
+csv_file = "data.csv"
+text_file = "data.txt"
 
 
-@app.route('/')
+@app.route("/")
 def root():
     """
     Run app
@@ -22,7 +20,7 @@ def root():
     return render_template("survey.html", data=survey_data)
 
 
-@app.route('/responsedata', methods=['POST'])
+@app.route("/responsedata", methods=["POST"])
 def surveyresponse():
     """
     Handle Survey Response
@@ -33,16 +31,16 @@ def surveyresponse():
     # DBInterface.writeToDB
     RspType = -1
 
-    rating = request.form['q1']
+    rating = request.form["q1"]
     if rating:
-        out = open(text_file, 'a')
-        out.write(rating + '\n')
+        out = open(text_file, "a")
+        out.write(rating + "\n")
         out.close()
 
     RspType = 1  # set it for radio button if at least one radio button is present in the questionnaire
     # Write ResponseInt <-- rating
 
-    response = request.form['q5']
+    response = request.form["q5"]
     if response:
         if RspType == -1:
             # set it for text input. As of now, this field and Responder filed are one and the same.
@@ -53,32 +51,42 @@ def surveyresponse():
 
     # Write to the database
     # TODO: Backend Fix!
-    DBInterface.writeToDB(RespUser='dummyUser', RespType=1, RespInt=int(
-        rating), RespText=response, RespDate=datetime.now())
+
+    db = DBInterface()
+
+    db.connect()
+
+    db.writeToDB(
+        RespUser="dummyUser",
+        RespType=1,
+        RespInt=int(rating),
+        RespText=response,
+        RespDate=datetime.now(),
+    )
     #############
     #############
     # End old code
 
     # writes the files to the local csv file for backup
-    DBInterface.writeToCsv(csv_file, request.form)
+    db.writeToCsv(csv_file, request.form)
 
-    return render_template('thankyou_simple.html')
+    return render_template("thankyou_simple.html")
     # return render_template('thankyou.html', data=survey_data, ans=request.form)
 
 
-@app.route('/results')
+@app.route("/results")
 def show_results():
     """
     Show results of survey
     :return:
     """
     responses = {}
-    for f in survey_data.data['fields']:
+    for f in survey_data.data["fields"]:
         responses[f] = 0
 
-    f = open(csv_file, 'r')
+    f = open(csv_file, "r")
     for line in f:
         response = line.rstrip("\n")
         responses[response] += 1
 
-    return render_template('results.html', data=survey_data.data, votes=responses)
+    return render_template("results.html", data=survey_data.data, votes=responses)
