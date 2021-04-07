@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ write-to-csv ]
   pull_request:
-    branches: [ main ]
+    branches: [ write-to-csv ]
 
 jobs:
   build:
