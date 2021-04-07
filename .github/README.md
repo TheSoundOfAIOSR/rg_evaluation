@@ -1,6 +1,8 @@
 # rg_evaluation
 Research Group - Evaluation
 
+[![Python application](https://github.com/TheSoundOfAIOSR/rg_evaluation/actions/workflows/python-app.yml/badge.svg)](https://github.com/TheSoundOfAIOSR/rg_evaluation/actions/workflows/python-app.yml)
+
 ## Flask App for the survey:
 
 > `run.py` handles the Python survey app (written in Flask) 
