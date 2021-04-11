@@ -12,7 +12,6 @@ survey_data = SurveyData()
 csv_file = 'data.csv'
 text_file = 'data.txt'
 
-
 @app.route('/')
 def root():
     """
@@ -20,7 +19,6 @@ def root():
     :return:
     """
     return render_template("survey.html", data=survey_data)
-
 
 @app.route('/responsedata', methods=['POST'])
 def surveyresponse():
@@ -31,30 +29,30 @@ def surveyresponse():
     # old code - only being kept to pass tests.
     # we should aim to get this generalized and into
     # DBInterface.writeToDB
-    RspType = -1
+    #RspType = -1
 
-    rating = request.form['q1']
-    if rating:
-        out = open(text_file, 'a')
-        out.write(rating + '\n')
-        out.close()
+    #rating = request.form['q1']
+    #if rating:
+    #    out = open(text_file, 'a')
+    #    out.write(rating + '\n')
+    #    out.close()
 
-    RspType = 1  # set it for radio button if at least one radio button is present in the questionnaire
+    #RspType = 1  # set it for radio button if at least one radio button is present in the questionnaire
     # Write ResponseInt <-- rating
 
-    response = request.form['q5']
-    if response:
-        if RspType == -1:
+    #response = request.form['q5']
+    #if response:
+    #    if RspType == -1:
             # set it for text input. As of now, this field and Responder filed are one and the same.
-            RspType = 2
+    #        RspType = 2
             # Write ResponseText <-- response
             # Write Responder <-- response
             # Write ResponseType <-- RspType
 
     # Write to the database
     # TODO: Backend Fix!
-    DBInterface.writeToDB(RespUser='dummyUser', RespType=1, RespInt=int(
-        rating), RespText=response, RespDate=datetime.now())
+    #DBInterface.writeToDB(RespUser='dummyUser', RespType=1, RespInt=int(
+    #    rating), RespText=response, RespDate=datetime.now())
     #############
     #############
     # End old code
@@ -63,8 +61,6 @@ def surveyresponse():
     DBInterface.writeToCsv(csv_file, request.form)
 
     return render_template('thankyou_simple.html')
-    # return render_template('thankyou.html', data=survey_data, ans=request.form)
-
 
 @app.route('/results')
 def show_results():
