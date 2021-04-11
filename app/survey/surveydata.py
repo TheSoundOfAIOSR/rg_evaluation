@@ -4,7 +4,7 @@ class SurveyData:
         'fields': ['1', '2', '3', '4', '5'],
         # This is the name by which you can access response after user submit the data.
         'name': 'q1',
-        # For eg, request.form["q1"]
+        # For eg, request.form["q
         "type": "radio"
     }
     question2 = {
