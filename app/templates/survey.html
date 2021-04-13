@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link
 			rel="stylesheet"
 			type="text/css"
@@ -25,281 +27,85 @@
 			<hr class="style-seven" />
 
 			<form action="/responsedata" method="POST" name="mainform">
-				<div class="p-5 mb-5 question" id='q1'>
-					<h3 class="my-3 ml-1">{{ data.question1.question }}</h3>
-					{% for e in data.question1.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question1.name }}"
-							value="{{e}}"
-							id="{{ data.question1.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question1.name }}-{{loop.index}}" onclick="scrollToId('#q2');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
+				{% set qno = namespace(value=0) %}
+				{% for key, value in data.items() %}
+					{% if key == "survey_rating_questions" %}
+						{% for question in value %}
+							<div class="p-5 mb-5 question" id="question_container_{{ qno.value }}">
+								<h3 class="my-3 ml-1">{{ question["question"] }}</h3>
+								{% for option in question["attribute"]["field"] %}
+								<div class="option">
+									<input
+										type="radio"
+										name="{{ question['attribute']['identifier'] }}"
+										value="{{ option }}"
+										id="{{ question['attribute']['identifier'] }}-{{loop.index}}"
+									/>
+									<label for="{{ question['attribute']['identifier'] }}-{{loop.index}}" onclick="scrollToId('#question_container_{{ (qno.value+1) }}');">
+										<span></span>
+										{{ option }}
+									</label>
+								</div>
+								{% endfor %}
+							</div>
+							{% set qno.value = qno.value + 1 %}
+						{% endfor %}
+					{% elif key == "survey_comments_questions" %}
+						{% for question in value %}
+							<div class="p-5 mb-5 question" id="question_container_{{ qno.value }}">
+								<h3 class="my-3 ml-1">{{ question["question"] }}</h3>
+								<textarea
+									name="{{ question['attribute']['identifier'] }}"
+									id="{{ question['attribute']['identifier'] }}"
+									rows="5"
+									cols="80"
+								></textarea>
+							</div>
+							{% set qno.value = qno.value + 1 %}
+						{% endfor %}
+					{% elif key == "turing_test_sound_comparisons" %}
+						
+						<h1 class="text-center">Turing Test!</h1>
 
-				<div class="p-5 mb-5 question" id="q2">
-					<h3 class="my-3 ml-1">{{ data.question2.question }}</h3>
-					{% for e in data.question2.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question2.name }}"
-							value="{{e}}"
-							id="{{ data.question2.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question2.name }}-{{loop.index}}" onclick="scrollToId('#q3');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
+						<p class="text-center">
+							For these questions, listen to both audio samples and decide
+							which one sounds like a human made it.
+						</p>
 
-				<div class="p-5 mb-5 question" id="q3">
-					<h3 class="my-3 ml-1">{{ data.question3.question }}</h3>
-					{% for e in data.question3.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question3.name }}"
-							value="{{e}}"
-							id="{{ data.question3.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question3.name }}-{{loop.index}}" onclick="scrollToId('#q4');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
+						{% for question in value %}
+							{% set outer_loop = loop %}
+							<div class="p-5 mb-5 question" id="question_container_{{ qno.value }}">
+								<h3 class="my-3 ml-1">{{ question["question"] }}</h3>
+								{% for option in question["attribute"]["field"] %}
+			
+								<div class="option">
+									<input
+										type="radio"
+										name="{{ question['attribute']['identifier'] }}"
+										value="{{ option }}"
+										id="{{ question['attribute']['identifier'] }}-{{loop.index}}"
+									/>
+									<label for="{{ question['attribute']['identifier'] }}-{{loop.index}}" 
+										{% if not outer_loop.last %}
+											onclick="scrollToId('#question_container_{{ (qno.value+1) }}');"
+										{% endif %}
+									>
+										<span></span>
+										<audio
+											controls
+											controlsList="nodownload"
+											src="/static/audio/{{ question['attribute']['fileName'][loop.index-1] }}"
+											preload="auto"
+										></audio>
+									</label>
+								</div>
+								{% endfor %}
+							</div>
 
-				<div class="p-5 mb-5 question" id="q4">
-					<h3 class="my-3 ml-1">{{ data.question4.question }}</h3>
-					{% for e in data.question4.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question4.name }}"
-							value="{{e}}"
-							id="{{ data.question4.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question4.name }}-{{loop.index}}" onclick="scrollToId('#q7');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q7">
-					<h3 class="my-3 ml-1">{{ data.question7.question }}</h3>
-					{% for e in data.question7.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question7.name }}"
-							value="{{e}}"
-							id="{{ data.question7.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question7.name }}-{{loop.index}}" onclick="scrollToId('#q9');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q9">
-					<h3 class="my-3 ml-1">{{ data.question9.question }}</h3>
-					{% for e in data.question9.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question9.name }}"
-							value="{{e}}"
-							id="{{ data.question9.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question9.name }}-{{loop.index}}" onclick="scrollToId('#q10');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id='q10'>
-					<h3 class="my-3 ml-1">{{ data.question10.question }}</h3>
-					{% for e in data.question10.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question10.name }}"
-							value="{{e}}"
-							id="{{ data.question10.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question10.name }}-{{loop.index}}" onclick="scrollToId('#q11');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q11">
-					<h3 class="my-3 ml-1">{{ data.question11.question }}</h3>
-					{% for e in data.question11.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question11.name }}"
-							value="{{e}}"
-							id="{{ data.question11.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question11.name }}-{{loop.index}}" onclick="scrollToId('#q14');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q14">
-					<h3 class="my-3 ml-1">{{ data.question14.question }}</h3>
-					{% for e in data.question14.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question14.name }}"
-							value="{{e}}"
-							id="{{ data.question14.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question14.name }}-{{loop.index}}" onclick="scrollToId('#q15');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q15">
-					<h3 class="my-3 ml-1">{{ data.question15.question }}</h3>
-					{% for e in data.question15.fields %}
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question15.name }}"
-							value="{{e}}"
-							id="{{ data.question15.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question15.name }}-{{loop.index}}" onclick="scrollToId('#q8');">
-							<span></span>
-							{{e}}
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q8">
-					<h3 class="my-3 ml-1">{{ data.question8.question }}</h3>
-					<textarea
-						name="{{ data.question8.name }}"
-						rows="5"
-						cols="80"
-					></textarea>
-				</div>
-
-				<div class="p-5 mb-5 question">
-					<h3 class="my-3 ml-1">{{ data.question5.question}}</h3>
-					<textarea
-						name="{{ data.question5.name }}"
-						rows="5"
-						cols="80"
-					></textarea>
-				</div>
-
-				<h1 class="text-center">Turing Test!</h1>
-
-				<p class="text-center">
-					For these questions, listen to both audio samples and decide
-					which one sounds like a human made it.
-				</p>
-
-				<div class="p-5 mb-5 question">
-					<h3 class="my-3 ml-1">{{data.question6.question}}</h3>
-					{% for e in data.question6.fields %}
-
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question6.name }}"
-							value="{{e}}"
-							id="{{ data.question6.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question6.name }}-{{loop.index}}" onclick="scrollToId('#q12');">
-							<span></span>
-							<audio
-								controls
-								controlsList="nodownload"
-								src="{{data.question6[e]}}"
-								preload="auto"
-							></audio>
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="p-5 mb-5 question" id="q12">
-					<h3 class="my-3 ml-1">{{data.question12.question}}</h3>
-					{% for e in data.question12.fields %}
-
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question12.name }}"
-							value="{{e}}"
-							id="{{ data.question12.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question12.name }}-{{loop.index}}" onclick="scrollToId('#q13');">
-							<span></span>
-							<audio
-								controls
-								controlsList="nodownload"
-								src="{{data.question12[e]}}"
-								preload="auto"
-							></audio>
-						</label>
-					</div>
-					{% endfor %}
-				</div>
-				<div class="p-5 mb-5 question" id="q13">
-					<h3 class="my-3 ml-1">{{data.question13.question}}</h3>
-					{% for e in data.question13.fields %}
-
-					<div class="option">
-						<input
-							type="radio"
-							name="{{ data.question13.name }}"
-							value="{{e}}"
-							id="{{ data.question13.name }}-{{loop.index}}"
-						/>
-						<label for="{{ data.question13.name }}-{{loop.index}}" onclick="scrollToId('#submit-button');">
-							<span></span>
-							<audio
-								controls
-								controlsList="nodownload"
-								src="{{data.question13[e]}}"
-								preload="auto"
-							></audio>
-						</label>
-					</div>
-					{% endfor %}
-				</div>
+							{% set qno.value = qno.value + 1 %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
 
 				<input
 					type="submit"
@@ -307,6 +113,7 @@
 					class="d-block mx-auto rounded-lg"
 					id="submit-button"
 				/>
+
 			</form>
 		</div>
 		<script src="{{ url_for('static',filename='js/jquery.js') }}"></script>

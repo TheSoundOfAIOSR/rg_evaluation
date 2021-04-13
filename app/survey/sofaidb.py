@@ -10,7 +10,8 @@ from datetime import datetime
 
 from app.config import load_config
 from app.constants import NUM_QUESTIONS
-from app.survey.surveydata import SurveyData
+# from app.survey.surveydata import SurveyData
+from app.survey.loadSurveyData import loadSurveyData
 import pymysql
 
 
@@ -20,11 +21,11 @@ class DBInterface:
     # as cls.db, cls.cursor, etc,  OR as  DBInterface.db, DBInterface.cursor, etc.
     DATABASE_NAME = "SofAISurvey"
     config = load_config()
-    db = pymysql.connect(
-        host=config['hostname'],
-        user=config['username'],
-        password=config['password'])
-    cursor = db.cursor()
+    # db = pymysql.connect(
+    #     host=config['hostname'],
+    #     user=config['username'],
+    #     password=config['password'])
+    # cursor = db.cursor()
 
     @classmethod
     def createMainTable(cls):
@@ -54,16 +55,19 @@ class DBInterface:
             - form - dictionary, intended to be survey results coming out of flask.request.form.
         """
         responses = []
-        for question_number in range(1, NUM_QUESTIONS + 1):
-            if 'q'+str(question_number) in form:
-                responses.append(form['q'+str(question_number)])
-            else:
-                # if someone doesn't respond to a question, this will make sure it
-                # gets recorded as a NaN
-                responses.append('')
+        survey_data = loadSurveyData()
 
         current_date = datetime.now().strftime("%Y-%m-%d-%H-%M")
         responses.append(current_date)
+
+        for key, item in survey_data.items():
+            for question in item:
+                try: 
+                    userResponse = form[question['attribute']['identifier']]
+                except:
+                    userResponse = ""
+                finally:
+                    responses.append(userResponse)
 
         # write all responses to the textfile separated by commas
         with open(csv_file, "a") as fp:

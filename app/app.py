@@ -3,12 +3,13 @@ from datetime import datetime
 
 from flask import Flask, render_template, request
 
-from app.survey.surveydata import SurveyData
+# from app.survey.surveydata import SurveyData
 from app.survey.sofaidb import DBInterface
-from app.constants import NUM_QUESTIONS
+# from app.constants import NUM_QUESTIONS
+from app.survey.loadSurveyData import loadSurveyData
 
 app = Flask(__name__)
-survey_data = SurveyData()
+survey_data = loadSurveyData()
 csv_file = 'data.csv'
 text_file = 'data.txt'
 

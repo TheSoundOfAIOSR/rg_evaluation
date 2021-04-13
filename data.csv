@@ -1,6 +1,4 @@
-q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, date
-1,3,4,I will probably never use this,,,4,,4,,,,,,,2021-04-03
-1,2,3,I will use it from time to time,wow,,,I love it,2,,2,,,4,5,2021-04-03
-1,1,1,I-will-probably-use-it,sample_1,,,,,,,,,,,2021-04-04-09-04
-2,3,5,I will use it from time to time,,sample_2,5,,3,3,5,sample_2,sample_2,2,2,2021-04-11-12-20
-1,2,2,I will probably never use this,test,,2,test,2,,,,,,,2021-04-11-12-27
+Date,Q0001,Q0002,Q0003,Q0004,Q0005,Q0006,Q0007,Q0008,Q0009,Q0010,Q0011,Q0012,Q0013,Q0014,Q0015,Q0016,Q0017,Q0018,Q0019,Q0020,Q0021
+2021-04-13-12-17,1,1,2,1,3,3,2,2,3,I will use it from time to time,2,2,4,1,Yes,No,Yes,No,classical_3,classical_8,classical_8
+2021-04-13-12-18,1,2,1,1,1,1,2,2,3,I will use it from time to time,2,2,2,1,Yes,No,Yes,No,classical_8,classical_3,classical_3
+2021-04-13-12-22,1,1,2,1,3,3,2,2,3,I will use it from time to time,2,2,4,1,Yes,No,Yes,No,classical_3,classical_8,classical_8

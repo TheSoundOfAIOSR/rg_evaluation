@@ -37,7 +37,7 @@ df = pd.read_csv("./data.csv")
 #    data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
 #    return data
 #data = load_data(10000)
-print(df["q1"])
+print(df["Q0001"])
 
 #st.bar_chart(df["q1"])
 #st.bar_chart(df["q2"])
@@ -76,5 +76,5 @@ print(df["q1"])
 #        data[DATE_COLUMN].dt.hour, bins=24, range=(0, 24))[0]
 #    st.bar_chart(hist_values)
 
-
+st.text("")
 st.markdown("[Insert Survey String Responses]")
