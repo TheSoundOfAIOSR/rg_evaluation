@@ -37,10 +37,20 @@ df = pd.read_csv("./data.csv")
 #    data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
 #    return data
 #data = load_data(10000)
-print(df["Q0001"])
+#print(df["Q0001"])
+#print(df["Q0002"])
 
-#st.bar_chart(df["q1"])
-#st.bar_chart(df["q2"])
+row3_space1, row3_1, row3_space2, row3_2, row3_space3 = st.beta_columns(
+    (.1, 1, .1, 1, .1))
+
+with row3_1:
+    st.subheader("Survey Question 1")
+    st.bar_chart(df["Q0001"])
+ 
+with row3_2:
+    st.subheader("Survey Question 2")
+    st.bar_chart(df["Q0002"])
+
 #st.bar_chart(df["q3"])
 #st.bar_chart(df["q7"])
 #st.bar_chart(df["q9"])
@@ -78,3 +88,6 @@ print(df["Q0001"])
 
 st.text("")
 st.markdown("[Insert Survey String Responses]")
+for i in len(df["Q0002"]):
+    st.text(df["Q0017"][i])
+    st.text(" \n")

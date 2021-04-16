@@ -63,9 +63,9 @@ class DBInterface:
         for key, item in survey_data.items():
             for question in item:
                 try: 
-                    userResponse = form[question['attribute']['identifier']]
+                    userResponse = '"' + str(form[question['attribute']['identifier']]) + '"'
                 except:
-                    userResponse = ""
+                    userResponse = '""'
                 finally:
                     responses.append(userResponse)
 
