@@ -88,6 +88,6 @@ with row3_2:
 
 st.text("")
 st.markdown("[Insert Survey String Responses]")
-for i in len(df["Q0002"]):
-    st.text(df["Q0017"][i])
+for col_name, data in df.items():
+    st.text(data)
     st.text(" \n")
